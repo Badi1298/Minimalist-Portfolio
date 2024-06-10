@@ -83,9 +83,36 @@ export const BentoGridItem = ({
 				>
 					<div className="z-10 font-sans text-sm font-extralight text-[#c1c2d3] md:text-xs lg:text-base">{description}</div>
 					<div className="z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl">{title}</div>
-				</div>
 
-				{id === 2 && <GlobeDemo />}
+					{id === 2 && <GlobeDemo />}
+
+					{id === 3 && (
+						<div className="absolute -right-3 flex w-fit gap-1 lg:-right-2 lg:gap-5">
+							<div className="flex flex-col gap-3 lg:gap-8">
+								{['React.js', 'Next.js', 'TypeScript'].map((item) => (
+									<span
+										key={item}
+										className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
+									>
+										{item}
+									</span>
+								))}
+								<span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
+							</div>
+							<div className="flex flex-col gap-3 lg:gap-8">
+								{['Vue.js', 'AWS', 'MongoDB'].map((item) => (
+									<span
+										key={item}
+										className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
+									>
+										{item}
+									</span>
+								))}
+								<span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
+							</div>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);
