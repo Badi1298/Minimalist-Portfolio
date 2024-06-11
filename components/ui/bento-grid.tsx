@@ -1,7 +1,19 @@
-import { cn } from '@/utils/cn';
+/* eslint-disable @next/next/no-img-element */
+'use client';
+
+import { useState } from 'react';
+
 import Image from 'next/image';
-import { BackgroundGradientAnimation } from './background-gradient-animation';
+
+import { cn } from '@/utils/cn';
+
+import Lottie from 'react-lottie';
+import animationData from '@/data/confetti.json';
+
+import MagicButton from './magic-button';
 import { GlobeDemo } from './grid-globe';
+import { IoCopyOutline } from 'react-icons/io5';
+import { BackgroundGradientAnimation } from './background-gradient-animation';
 
 export const BentoGrid = ({ className, children }: { className?: string; children?: React.ReactNode }) => {
 	return (
@@ -36,10 +48,21 @@ export const BentoGridItem = ({
 	imgClassName?: string;
 	spareImg?: string;
 }) => {
+	const [copied, setCopied] = useState(false);
+
+	const leftLists = ['ReactJS', 'Express', 'Typescript'];
+	const rightLists = ['VueJS', 'NuxtJS', 'GraphQL'];
+
+	const handleCopy = () => {
+		navigator.clipboard.writeText('serbandavid83@gmail.com');
+
+		setCopied(true);
+	};
+
 	return (
 		<div
 			className={cn(
-				'group/bento relative row-span-1 flex flex-col justify-between space-y-4 overflow-hidden rounded-3xl border border-transparent bg-white p-4 shadow-input transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none',
+				'group/bento relative row-span-1 flex flex-col justify-between space-y-4 overflow-hidden rounded-3xl border border-white/[0.1] shadow-input transition duration-200 hover:shadow-xl dark:shadow-none',
 				className
 			)}
 			style={{
@@ -47,7 +70,7 @@ export const BentoGridItem = ({
 				backgroundColor: 'linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)',
 			}}
 		>
-			<div className={`${id === 6 && 'flex h-full justify-center'}`}>
+			<div className={`${id === 6 && 'flex justify-center'} h-full`}>
 				<div className="absolute h-full w-full">
 					{img && (
 						<Image
@@ -58,10 +81,9 @@ export const BentoGridItem = ({
 						/>
 					)}
 				</div>
-				<div className={`absolute -bottom-5 right-0 ${id === 5 && 'w-full opacity-80'}`}>
+				<div className={`absolute -bottom-5 right-0 ${id === 5 && 'w-full opacity-80'} `}>
 					{spareImg && (
-						<Image
-							fill
+						<img
 							src={spareImg}
 							alt={spareImg}
 							className="h-full w-full object-cover object-center"
@@ -87,29 +109,54 @@ export const BentoGridItem = ({
 					{id === 2 && <GlobeDemo />}
 
 					{id === 3 && (
-						<div className="absolute -right-3 flex w-fit gap-1 lg:-right-2 lg:gap-5">
-							<div className="flex flex-col gap-3 lg:gap-8">
-								{['React.js', 'Next.js', 'TypeScript'].map((item) => (
+						<div className="absolute -right-3 top-0 flex w-fit gap-1 lg:-right-2 lg:gap-5">
+							{/* tech stack lists */}
+							<div className="flex flex-col gap-3 md:gap-3 lg:gap-7">
+								{leftLists.map((item, i) => (
 									<span
-										key={item}
-										className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
+										key={i}
+										className="rounded-lg bg-[#10132E] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
 									>
 										{item}
 									</span>
 								))}
-								<span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
+								<span className="rounded-lg bg-[#10132E] px-3 py-4 text-center lg:px-3 lg:py-4"></span>
 							</div>
-							<div className="flex flex-col gap-3 lg:gap-8">
-								{['Vue.js', 'AWS', 'MongoDB'].map((item) => (
+							<div className="flex flex-col gap-3 md:gap-3 lg:gap-7">
+								<span className="rounded-lg bg-[#10132E] px-3 py-4 text-center lg:px-3 lg:py-4"></span>
+								{rightLists.map((item, i) => (
 									<span
-										key={item}
-										className="rounded-lg bg-[#10132e] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
+										key={i}
+										className="rounded-lg bg-[#10132E] px-3 py-2 text-center text-xs opacity-50 lg:px-3 lg:py-4 lg:text-base lg:opacity-100"
 									>
 										{item}
 									</span>
 								))}
-								<span className="rounded-lg bg-[#10132e] px-3 py-4 text-center" />
 							</div>
+						</div>
+					)}
+
+					{id === 6 && (
+						<div className="relative mt-5">
+							<div className={`absolute -bottom-5 right-0`}>
+								<Lottie
+									options={{
+										loop: copied,
+										autoplay: copied,
+										animationData: animationData,
+										rendererSettings: {
+											preserveAspectRatio: 'xMidYMid slice',
+										},
+									}}
+								/>
+							</div>
+							<MagicButton
+								label={copied ? 'Email copied' : 'Copy my email'}
+								icon={<IoCopyOutline />}
+								position="left"
+								otherClasses="!bg-[#161a31]"
+								handleClick={handleCopy}
+							/>
 						</div>
 					)}
 				</div>
