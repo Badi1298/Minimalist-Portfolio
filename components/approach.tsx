@@ -25,7 +25,7 @@ export default function Approach() {
 					/>
 				</Card>
 				<Card
-					title="Nisha is Munni"
+					title="Aaaaaaa"
 					icon={<AceternityIcon order="Phase 2" />}
 					desc="Once we agree on the plan, I cue my lofi playlist and dive into
           coding. From initial sketches to polished code, I keep you updated
@@ -44,7 +44,7 @@ export default function Approach() {
 					<div className="absolute inset-0 bg-black/50 [mask-image:radial-gradient(400px_at_center,white,transparent)] dark:bg-black/90" />
 				</Card>
 				<Card
-					title="Munni is Aditi"
+					title="Bbbbbb"
 					icon={<AceternityIcon order="Phase 3" />}
 					desc="This is where the magic happens! Based on the approved design, 
           I'll translate everything into functional code, building your website

@@ -6,7 +6,7 @@ import { Button } from './ui/moving-border';
 export default function Experience() {
 	return (
 		<div
-			id="testimonials"
+			id="experience"
 			className="py-20"
 		>
 			<h1 className="heading">
